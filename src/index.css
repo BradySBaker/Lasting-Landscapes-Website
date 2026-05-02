@@ -8,6 +8,9 @@ body {
 #root {
   width: 100%;
 }
+a {
+  text-decoration: none;
+}
 /* ==== */
 
 /*  =====   Header & Menu ======*/
@@ -31,7 +34,7 @@ h1 {
   font-size: 60px;
   margin: 40px 0px 20px 0px;
 }
-h2 {
+h2, h3 {
   color: #d1d5db
 }
 
@@ -50,7 +53,8 @@ h2 {
   align-items: center; 
 }
 
-a {
+.navbar-buttons {
+  margin: 0;
   color: rgba(255, 255, 255, 0.575);
   text-decoration: none;
   margin-right: 80px;
@@ -60,19 +64,22 @@ a {
   padding: 5px 10px 5px 10px;
   transition: .25s;
 }
-a:hover {
+.navbar-buttons:hover {
   background-color: rgba(255, 255, 255, 0.212);  
   color: white;
 }
-.ironworks {
+.ironworks-button {
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
 }
-.ironworks:hover a, .ironworks:hover .anvil-hammer {
+.ironworks-button:hover .navbar-buttons, .ironworks-button:hover .anvil-hammer {
   background-color: rgba(255, 255, 255, 0.082);  
   color: white;
+}
+.ironworks-button:hover {
+  background-color: rgba(22, 0, 0, 0);
 }
 .anvil-hammer {
   width: 70px;
@@ -88,18 +95,26 @@ a:hover {
 /* ========  Home Page  =======*/
 
 .home {
+  margin-top: 60px;
+}
+.image-slide-container {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 50%;
+  margin-bottom: 50px;
+  padding: 0;
 }
 .image-slide-title {
+  margin: 0;
   background-color: #020617;
   padding: 20px;
   padding-bottom: 10px;
   margin-bottom: 0px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  cursor: pointer;
 }
 
 .image-slide {
@@ -108,20 +123,26 @@ a:hover {
   width: 90%;
   border-radius: 20px;
   border:  #020617 solid 4px;
-  border-top:#020617 solid 20px;;
+  border-top:#020617 solid 20px;
+  cursor: pointer;
+}
+
+.image-slide-container:hover .image-slide-title, .image-slide-container:hover .image-slide {
+  color: white;
+  background-color: rgb(3, 7, 29);
+  border-color: rgb(3, 7, 29);
 }
 
 .track {
   display: flex;
-  width: max-content;
   animation: scroll 20s linear infinite;
 }
 
 .slide-img {
-  width: 400px;
   height: 400px;
   object-fit: cover;
   flex-shrink: 0;
+  border-radius: 5px;
 }
 
 @keyframes scroll {
@@ -129,8 +150,32 @@ a:hover {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(var(--scroll-width));
   }
 }
 
 /* ========    =======*/
+
+/* ======== About ========*/
+.about {
+  display: flex;
+  margin-top: 50px;
+}
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.about-text {
+  width: 80%;
+}
+.portrait {
+  width: 300px;
+  height: 500px;
+  border-radius: 10px;
+  margin: 0px 20px 0px 20px;
+  object-fit: cover;
+}
+
+
+/* ======== ========*/

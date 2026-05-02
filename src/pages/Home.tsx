@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom"
 import ImageSlide from "../components/ImageSlide";
 
 function Home({lastingLandscapesURLS, ironWorksURLS}: {lastingLandscapesURLS: string[], ironWorksURLS: string[]}) {
@@ -5,11 +6,14 @@ function Home({lastingLandscapesURLS, ironWorksURLS}: {lastingLandscapesURLS: st
     return (
         <>
             <div className="home">
-                <h2 className="image-slide-title">Lasting Landscapes</h2>
-                <ImageSlide imgURLS={lastingLandscapesURLS}/>
-
-                <h2 className="image-slide-title">Iron Works</h2>
-                <ImageSlide imgURLS={ironWorksURLS}/>
+                <Link to="/landscaping" className="image-slide-container">
+                    <h2 className="image-slide-title">Lasting Landscapes</h2>
+                    <ImageSlide imgURLS={lastingLandscapesURLS}/>
+                </Link>
+                <Link to="/ironworks" className="image-slide-container">
+                        <h2 className="image-slide-title">Iron Works</h2>
+                        <ImageSlide imgURLS={ironWorksURLS}/>
+                </Link>
             </div>
         </>
     )

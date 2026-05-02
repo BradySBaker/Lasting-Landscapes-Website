@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {Routes, Route } from "react-router-dom";
+import {Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home.tsx";
 import Landscaping from "./pages/Landscaping.tsx";
 import Ironworks from "./pages/Ironworks.tsx";
@@ -20,13 +20,13 @@ function App() {
         <div className='underline'></div>
       </div>
       <div className="navbar"> 
-          <a href="/">Home</a>
-          <a href="/landscaping">Landscaping</a>
-          <div className="ironworks" onMouseEnter={() => {setIronWorkSrc(ironWorksLogos[1])}} onMouseLeave={() => {setIronWorkSrc(ironWorksLogos[0])}}>
-            <a href="/ironworks">Ironworks</a>
+          <a className='navbar-buttons' href="/">Home</a>
+          <a className='navbar-buttons' href="/landscaping">Landscaping</a>
+          <Link to="/ironworks" className="ironworks-button" onMouseEnter={() => {setIronWorkSrc(ironWorksLogos[1])}} onMouseLeave={() => {setIronWorkSrc(ironWorksLogos[0])}}>
+            <p className='navbar-buttons'>Ironworks</p>
             <img className='anvil-hammer' src={ironWorkSrc}/>
-          </div>
-          <a href="/about">About</a>
+          </Link>
+          <a className='navbar-buttons' href="/about">About</a>
         </div> 
       </div>
 
