@@ -1,10 +1,12 @@
-function Home() {
+import ImageSlide from "../components/ImageSlide";
+
+function Home({imgURLS}: {imgURLS: string[]}) {
 
     return (
         <>
-            <div className='header'>
-                <h1>Lasting Landscapes</h1>
-                <div className='underline'></div>
+            <div className="home">
+                test
+                <ImageSlide imgURLS={imgURLS}/>
             </div>
         </>
     )
