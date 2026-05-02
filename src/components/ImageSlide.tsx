@@ -1,12 +1,15 @@
 function ImageSlide({imgURLS}: {imgURLS: string[]}) {
+    const loopURLS = [...imgURLS, ...imgURLS]
     return(
         <div className="image-slide">
-            {imgURLS.map((curURL, index) => {
-                console.log(curURL)
-                return (
-                    <img className='slide-img' src={curURL} key={index}/>
-                )
-            })}
+            <div className="track">
+                 {loopURLS.map((curURL, index) => {
+                    console.log(curURL)
+                    return (
+                        <img className='slide-img' src={curURL} key={index}/>
+                    )
+                })}
+            </div>
         </div>
     )
 }
