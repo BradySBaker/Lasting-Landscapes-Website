@@ -1,10 +1,10 @@
-function Gallery() {
+function Ironworks() {
 
     return (
-        <div>
-
+        <div className="ironworks">
+            <h2>Custom Fabrication</h2>
         </div>
     )
 }
 
-export default Gallery;
+export default Ironworks;

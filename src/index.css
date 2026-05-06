@@ -39,10 +39,11 @@ h1 {
   margin: 3vh 0px 1.3rem 0px;
 }
 h2, h3 {
-  color: #d1d5db
+  color: #d1d5db;
+  text-align: center;
 }
 h2 {
-  font-size: clamp(.9rem, 1.5vw, 2.5rem);
+  font-size: clamp(.9rem, 2vw, 3rem);
 }
 
 .underline {
@@ -50,8 +51,6 @@ h2 {
   height: .1rem;
   background-color: rgba(255, 253, 253, 0.548);
 }
-
-
 
 .navbar {
   margin-top: 1rem;
@@ -171,6 +170,7 @@ h2 {
   display: flex;
   margin-top: 50px;
 }
+
 .about-container {
   display: flex;
   flex-direction: column;

@@ -5,9 +5,26 @@ import Landscaping from "./pages/Landscaping.tsx";
 import Ironworks from "./pages/Ironworks.tsx";
 import About from "./pages/About.tsx";
 
+type LandscapingURLs = {
+  landscapingPatio: string[];
+  landscapingPlanting: string[];
+  landscapingStoneWork: string[];
+  landscapingPathways: string[];
+  landscapingWater: string[];
+};
+
 function App() {
   const ironWorksLogos = ['Hammer Anvil 0.png', 'Hammer Anvil.gif'];
-  const lastingLandscapesURLS = ['Lasting Landscapes/1.avif', 'Lasting Landscapes/2.avif', 'Lasting Landscapes/3.avif', 'Lasting Landscapes/4.avif', 'Lasting Landscapes/5.avif', 'Lasting Landscapes/6.avif'];
+  const [landscapingURLs, setLandscapingURLs] = useState<LandscapingURLs>({
+    landscapingPatio: [],
+    landscapingPlanting: [],
+    landscapingStoneWork: [],
+    landscapingPathways: [],
+    landscapingWater: []
+  });
+  
+  const landscapingHomeURLS = ['Lasting Landscapes/1.avif', 'Lasting Landscapes/2.avif', 'Lasting Landscapes/3.avif', 'Lasting Landscapes/4.avif', 'Lasting Landscapes/5.avif', 'Lasting Landscapes/6.avif'];
+
   const ironWorksURLS = ['IronWorks/1.jpg', 'IronWorks/2.jpg', 'IronWorks/3.jpg', 'IronWorks/4.jpg', 'IronWorks/5.jpg', 'IronWorks/6.jpg'];
 
   const [ironWorkSrc, setIronWorkSrc] = useState(ironWorksLogos[0]);
