@@ -7,9 +7,9 @@ function Ironworks() {
     const [ironWorkURLS, setIronWorkURLS] = useState<string[]>([]);
     const [selectedImgURL, setSelectedImgURL] = useState('');
 
-    const imageClick = (e: React.MouseEvent<HTMLImageElement>) => {
-        const src = e.currentTarget.src;
-        setSelectedImgURL(src);
+    const imageClick = (imgNum: number) => {
+        // setSelectedImgURL(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto/Ironworks/${imgNum}`); //Production
+         setSelectedImgURL(`${baseURL}IronWorks/${imgNum}.jpg`) //Dev
     }
 
     const imageClose = () => {
@@ -19,7 +19,7 @@ function Ironworks() {
     useEffect(() => {
         const curURLS: string[] = [];
         for (let i = 1; i <= 28; i++ ) {
-            // curURLS.push(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto/Ironworks/${i}`); //Production
+            // curURLS.push(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto,w_500/Ironworks/${i}`); //Production
             curURLS.push(`${baseURL}IronWorks/${i}.jpg`); //DEV
         }
         setIronWorkURLS(curURLS);
@@ -35,9 +35,9 @@ function Ironworks() {
             
             <h2>Custom Fabrication</h2>
             <div className='ironworks-img-container'>
-            {ironWorkURLS.map((curURL) => {
+            {ironWorkURLS.map((curURL, index) => {
                 return (
-                    <LazyImage src={curURL} onClick={imageClick} />
+                    <LazyImage key={curURL} src={curURL} onClick={() => imageClick(index + 1)} />
                 )
             })}
             </div>

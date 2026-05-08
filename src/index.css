@@ -237,14 +237,14 @@ h2 {
     margin-bottom: 100px;
   }
   .ironworks-img {
-    width: 12vw;
-    height: 10vw;
+    width: 20vw;
+    height: 17vw;
     border-radius: 5px;
     object-fit: cover;
-    transition: .1s;
+    transition: transform 0.2s ease;
   }
   .ironworks-img:hover {
-    opacity: .5;
+    transform: scale(1.03);
   }
 /*==============================*/
 
