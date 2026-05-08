@@ -8,11 +8,31 @@ import Landscaping from "./pages/Landscaping.tsx";
 import Ironworks from "./pages/Ironworks.tsx";
 import About from "./pages/About.tsx";
 
+const base = '/Lasting-Landscapes-Website/';
 
 function App() {
-  const ironWorksLogos = ['icons/Hammer Anvil 0.png', 'icons/Hammer Anvil.gif'];
-  const landscapingHomeURLS = ['Lasting Landscapes/1.avif', 'Lasting Landscapes/2.avif', 'Lasting Landscapes/3.avif', 'Lasting Landscapes/4.avif', 'Lasting Landscapes/5.avif', 'Lasting Landscapes/6.avif'];
-  const ironWorksHomeURLS = ['IronWorks/1.jpg', 'IronWorks/2.jpg', 'IronWorks/3.jpg', 'IronWorks/4.jpg', 'IronWorks/5.jpg', 'IronWorks/6.jpg'];
+  const ironWorksLogos = [
+    base + 'icons/Hammer Anvil 0.png',
+    base + 'icons/Hammer Anvil.gif'
+  ];
+
+  const landscapingHomeURLS = [
+    base + 'Lasting Landscapes/1.avif',
+    base + 'Lasting Landscapes/2.avif',
+    base + 'Lasting Landscapes/3.avif',
+    base + 'Lasting Landscapes/4.avif',
+    base + 'Lasting Landscapes/5.avif',
+    base + 'Lasting Landscapes/6.avif'
+  ];
+
+  const ironWorksHomeURLS = [
+    base + 'IronWorks/1.jpg',
+    base + 'IronWorks/2.jpg',
+    base + 'IronWorks/3.jpg',
+    base + 'IronWorks/4.jpg',
+    base + 'IronWorks/5.jpg',
+    base + 'IronWorks/6.jpg'
+  ];
   const [ironWorkIconSrc, setIronWorkIconSrc] = useState(ironWorksLogos[0]);
 
 
@@ -32,13 +52,13 @@ function App() {
         <div className='underline'></div>
       </div>
       <div className="navbar"> 
-          <a className='navbar-buttons' href="/">Home</a>
-          <a className='navbar-buttons' href="/landscaping">Landscaping</a>
+          <Link className='navbar-buttons' to="/">Home</Link>
+          <Link className='navbar-buttons' to="/landscaping">Landscaping</Link>
           <Link to="/ironworks" className="ironworks-button" onMouseEnter={() => {setIronWorkIconSrc(ironWorksLogos[1])}} onMouseLeave={() => {setIronWorkIconSrc(ironWorksLogos[0])}}>
             <p className='navbar-buttons'>Ironworks</p>
             <img className='anvil-hammer' src={ironWorkIconSrc}/>
           </Link>
-          <a className='navbar-buttons' href="/about">About</a>
+          <Link className='navbar-buttons' to="/about">About</Link>
         </div> 
       </div>
 
