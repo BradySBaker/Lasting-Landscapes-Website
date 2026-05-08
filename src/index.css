@@ -22,7 +22,7 @@ a {
 .header {
   background-color: #020617;
   width: 100%;
-  padding-bottom: 2rem;
+  padding-bottom: 2vh;
 
 }
 
@@ -33,17 +33,30 @@ a {
   flex-direction: column;
 }
 
+.header-title {
+  display: flex;
+}
+
+.landscaping-logo {
+  margin-top: 1.5vh;
+  margin-left: 2vh;
+
+  width: 5vw;
+  height: 5vw;
+  fill: white;
+}
+
 h1 {
+  white-space: nowrap;
   text-align: center;
-  font-size: clamp(.9rem, 4vw, 3.3rem);
-  margin: 3vh 0px 1.3rem 0px;
+  font-size: clamp(3vh, 3vw, 3.3rem);
 }
 h2, h3 {
   color: #d1d5db;
   text-align: center;
 }
 h2 {
-  font-size: clamp(.9rem, 2vw, 3rem);
+  font-size: clamp(.9rem, 1.6vw, 1.6rem);
 }
 
 .underline {
@@ -53,7 +66,7 @@ h2 {
 }
 
 .navbar {
-  margin-top: 1rem;
+  margin-top: .3rem;
   display: flex;
   justify-content: center;
   align-items: center; 
@@ -68,7 +81,7 @@ h2 {
   border-radius: 10px;
   padding: .2rem .5rem .2rem .5rem;
   transition: .25s;
-  font-size: clamp(0.7rem, 1.5vw, 1.6rem);
+  font-size: clamp(0.7rem, 1vw, 1.6rem);
 }
 .navbar-buttons:hover {
   background-color: rgba(255, 255, 255, 0.212);  
@@ -88,7 +101,7 @@ h2 {
   background-color: rgba(22, 0, 0, 0);
 }
 .anvil-hammer {
-  width: 4.5rem;
+  width: 4vw;
   border-radius: 5px;
   transition: .25s;
 }
@@ -191,6 +204,13 @@ h2 {
 /* ======== ========*/
 
 @media (orientation: portrait) {
+  .anvil-hammer {
+    width: 6vh;
+  }
+  .landscaping-logo {
+    width: 6vh;
+    height: 6vh;
+  }
   /* == headers == */
   .underline {
     width: 90%;
