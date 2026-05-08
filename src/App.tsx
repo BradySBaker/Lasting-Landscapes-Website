@@ -15,16 +15,6 @@ function App() {
     baseURL + 'icons/Hammer Anvil 0.png',
     baseURL + 'icons/Hammer Anvil.gif'
   ];
-
-  const landscapingHomeURLS = [
-    baseURL + 'Lasting Landscapes/1.avif',
-    baseURL + 'Lasting Landscapes/2.avif',
-    baseURL + 'Lasting Landscapes/3.avif',
-    baseURL + 'Lasting Landscapes/4.avif',
-    baseURL + 'Lasting Landscapes/5.avif',
-    baseURL + 'Lasting Landscapes/6.avif'
-  ];
-  console.log(landscapingHomeURLS);
   const [ironWorkIconSrc, setIronWorkIconSrc] = useState(ironWorksLogos[0]);
 
   return (
@@ -49,7 +39,7 @@ function App() {
       </div>
 
       <Routes> {/* Pages */}
-        <Route path="/" element={<Home landscapingHomeURLS={landscapingHomeURLS}/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/landscaping" element={<Landscaping />} />
         <Route path="/ironworks" element={<Ironworks />} />
         <Route path="/about" element={<About />} />

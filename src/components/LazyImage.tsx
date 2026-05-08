@@ -25,8 +25,9 @@ function LazyImage({ src, onClick }: any) {
     <img
       ref={ref}
       src={show ? src : undefined}
-      className="ironworks-img"
+      className="gallery-img"
       onClick={onClick}
+      alt='Images are still being added to the site, comeback later for more!'
     />
   );
 }

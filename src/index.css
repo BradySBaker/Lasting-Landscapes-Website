@@ -253,25 +253,25 @@ h3 {
 /*=============================*/
 
 
-/* ====== Iron Works Page ======*/
-  .ironworks {
+/* ====== Gallery Page ======*/
+  .gallery {
   }
 
-  .ironworks-img-container {
+  .gallery-img-container {
      display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
     margin-bottom: 100px;
   }
-  .ironworks-img {
+  .gallery-img {
     width: 20vw;
     height: 17vw;
     border-radius: 5px;
     object-fit: cover;
     transition: transform 0.2s ease;
   }
-  .ironworks-img:hover {
+  .gallery-img:hover {
     transform: scale(1.03);
   }
 /*==============================*/
