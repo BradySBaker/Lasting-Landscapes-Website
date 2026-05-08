@@ -8,38 +8,23 @@ import Landscaping from "./pages/Landscaping.tsx";
 import Ironworks from "./pages/Ironworks.tsx";
 import About from "./pages/About.tsx";
 
-const base = '/Lasting-Landscapes-Website/';
-
+export const baseURL = '/Lasting-Landscapes-Website/';
 function App() {
   const ironWorksLogos = [
-    base + 'icons/Hammer Anvil 0.png',
-    base + 'icons/Hammer Anvil.gif'
+    baseURL + 'icons/Hammer Anvil 0.png',
+    baseURL + 'icons/Hammer Anvil.gif'
   ];
 
   const landscapingHomeURLS = [
-    base + 'Lasting Landscapes/1.avif',
-    base + 'Lasting Landscapes/2.avif',
-    base + 'Lasting Landscapes/3.avif',
-    base + 'Lasting Landscapes/4.avif',
-    base + 'Lasting Landscapes/5.avif',
-    base + 'Lasting Landscapes/6.avif'
+    baseURL + 'Lasting Landscapes/1.avif',
+    baseURL + 'Lasting Landscapes/2.avif',
+    baseURL + 'Lasting Landscapes/3.avif',
+    baseURL + 'Lasting Landscapes/4.avif',
+    baseURL + 'Lasting Landscapes/5.avif',
+    baseURL + 'Lasting Landscapes/6.avif'
   ];
-
-  const ironWorksHomeURLS = [
-    base + 'IronWorks/1.jpg',
-    base + 'IronWorks/2.jpg',
-    base + 'IronWorks/3.jpg',
-    base + 'IronWorks/4.jpg',
-    base + 'IronWorks/5.jpg',
-    base + 'IronWorks/6.jpg'
-  ];
+  console.log(landscapingHomeURLS);
   const [ironWorkIconSrc, setIronWorkIconSrc] = useState(ironWorksLogos[0]);
-
-
-  useEffect(() => {
-  }, [])
-
-
 
   return (
     <>
@@ -64,7 +49,7 @@ function App() {
 
 
       <Routes> {/* Pages */}
-        <Route path="/" element={<Home landscapingHomeURLS={landscapingHomeURLS} ironWorksHomeURLS={ironWorksHomeURLS}/>} />
+        <Route path="/" element={<Home landscapingHomeURLS={landscapingHomeURLS}/>} />
         <Route path="/landscaping" element={<Landscaping />} />
         <Route path="/ironworks" element={<Ironworks />} />
         <Route path="/about" element={<About />} />
