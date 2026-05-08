@@ -1,13 +1,13 @@
 import ImageSlide from "../components/ImageSlide";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
-type LandscapingURLs = {
-  landscapingPatio: string[];
-  landscapingPlanting: string[];
-  landscapingStoneWork: string[];
-  landscapingPathways: string[];
-  landscapingWater: string[];
-};
+// type LandscapingURLs = {
+//   landscapingPatio: string[];
+//   landscapingPlanting: string[];
+//   landscapingStoneWork: string[];
+//   landscapingPathways: string[];
+//   landscapingWater: string[];
+// };
 
 function Landscaping() {
     const landscapingCategories = ['Patios & Outdoor Living', 'Planting & Softscapes', 'Stonework & Grading', 'Walkways & Pathways', 'Water Features & Ponds'];
