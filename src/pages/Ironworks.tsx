@@ -36,7 +36,7 @@ function Ironworks() {
             <div className='ironworks-img-container'>
             {ironWorkURLS.map((curURL) => {
                 return (
-                    <img className='ironworks-img' src={curURL} onClick={imageClick}/>
+                    <img className='ironworks-img' src={curURL} onClick={imageClick} loading="lazy"/>
                 )
             })}
             </div>
