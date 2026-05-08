@@ -7,6 +7,7 @@ import Home from "./pages/Home.tsx";
 import Landscaping from "./pages/Landscaping.tsx";
 import Ironworks from "./pages/Ironworks.tsx";
 import About from "./pages/About.tsx";
+import Contact from "./components/Contact.tsx";
 
 export const baseURL = '/Lasting-Landscapes-Website/';
 function App() {
@@ -47,13 +48,14 @@ function App() {
         </div> 
       </div>
 
-
       <Routes> {/* Pages */}
         <Route path="/" element={<Home landscapingHomeURLS={landscapingHomeURLS}/>} />
         <Route path="/landscaping" element={<Landscaping />} />
         <Route path="/ironworks" element={<Ironworks />} />
         <Route path="/about" element={<About />} />
       </Routes>
+
+      <Contact />
     </>
   )
 }

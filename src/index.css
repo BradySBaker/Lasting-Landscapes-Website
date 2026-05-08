@@ -3,6 +3,10 @@
   box-sizing: border-box
 }
 
+footer {
+  font-size: clamp(.4vh, 2vw, 1rem);
+  font-style: italic;
+}
 
 html, body, #root {
   margin: 0;
@@ -58,7 +62,9 @@ h2, h3 {
 h2 {
   font-size: clamp(.9rem, 1.6vw, 1.6rem);
 }
-
+h3 {
+    font-size: clamp(.6rem, 1vw, 1.2rem);
+}
 .underline {
   width: 50%;
   height: .1rem;
@@ -221,6 +227,26 @@ h2 {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
+}
+.contact {
+  display: flex;
+  background-color: #0b1220;
+  align-items: center;
+  flex-direction: column;
+}
+.contact-info-container {
+  display: flex;
+  margin-bottom: 2vw;
+  margin-top: 1vw;
+  gap: 1rem;
+}
+.contact p, .contact a {
+  font-size: clamp(1vh, .8vw, 1rem);
+  color: rgba(240, 248, 255, 0.699);
+  text-align: center;
+}
+.contact a {
+   color: blue !important;
 }
 /*=============================*/
 
