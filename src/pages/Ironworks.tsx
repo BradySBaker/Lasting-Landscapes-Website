@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import { baseURL } from '../App';
+import LazyImage from '../components/LazyImage';
 
 function Ironworks() {
 
@@ -27,7 +28,7 @@ function Ironworks() {
     return (
         <div className="ironworks">
             {selectedImgURL && 
-                <div className='backdrop' onClick={imageClick}>
+                <div className='backdrop' onClick={imageClose}>
                     <img className='selected-image' src={selectedImgURL}/>
                 </div>
             }
@@ -36,7 +37,7 @@ function Ironworks() {
             <div className='ironworks-img-container'>
             {ironWorkURLS.map((curURL) => {
                 return (
-                    <img className='ironworks-img' src={curURL} onClick={imageClick} loading="lazy"/>
+                    <LazyImage src={curURL} onClick={imageClick} />
                 )
             })}
             </div>
