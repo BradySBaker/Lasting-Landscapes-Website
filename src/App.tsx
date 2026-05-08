@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import {Routes, Route, Link } from "react-router-dom";
+
+export const baseURL = '/Lasting-Landscapes-Website/';
 
 import LandscapingLogo from "./components/landscapingLogo.tsx";
 
@@ -8,14 +10,35 @@ import Landscaping from "./pages/Landscaping.tsx";
 import Ironworks from "./pages/Ironworks.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./components/Contact.tsx";
+export type landscapingCategorie = {name: string, dir: string, urls: string[], count: number}
 
-export const baseURL = '/Lasting-Landscapes-Website/';
+
+const baseLandscapingCategories: landscapingCategorie[] = [ //Landscaping Photo and Category Info
+    {name: 'Patios & Outdoor Living', dir: 'Patios_Outdoor_Living', urls: [], count: 53},
+    {name: 'Planting & Softscapes', dir: 'Planting_Softscapes', urls: [], count: 34},
+    {name: 'Stonework & Grading', dir: 'Stonework_Grading', urls: [], count: 23},
+    {name: 'Walkways & Pathways', dir: 'Walkways_Pathways', urls: [], count: 23},
+    {name: 'Water Features & Ponds', dir: 'Water_Features_Ponds', urls: [], count: 11},
+    {name: 'Speciality Projects', dir: 'Speciality_Projects', urls: [], count: 6}
+];
+
+
 function App() {
+  const landscapingCategories: landscapingCategorie[] = useMemo(() => {
+    return baseLandscapingCategories.map(cat => ({
+      ...cat,
+      urls: Array.from({ length: cat.count }, (_, i) =>
+        `${baseURL}landscaping/${cat.dir}/${i + 1}.avif`
+      )
+    }));
+  }, []);
+
   const ironWorksLogos = [
     baseURL + 'icons/Hammer Anvil 0.png',
     baseURL + 'icons/Hammer Anvil.gif'
   ];
   const [ironWorkIconSrc, setIronWorkIconSrc] = useState(ironWorksLogos[0]);
+
 
   return (
     <>
@@ -40,7 +63,7 @@ function App() {
 
       <Routes> {/* Pages */}
         <Route path="/" element={<Home />} />
-        <Route path="/landscaping" element={<Landscaping />} />
+        <Route path="/landscaping" element={<Landscaping  landscapingCategories={landscapingCategories}/>} />
         <Route path="/ironworks" element={<Ironworks />} />
         <Route path="/about" element={<About />} />
       </Routes>

@@ -1,18 +1,8 @@
 import { useEffect } from "react";
 import ImageSlide from "../components/ImageSlide";
-import {landscapingCategories} from './Home';
-// import { useState, useEffect } from "react";
+import type { landscapingCategorie } from "../App";
 
-// type LandscapingURLs = {
-//   landscapingPatio: string[];
-//   landscapingPlanting: string[];
-//   landscapingStoneWork: string[];
-//   landscapingPathways: string[];
-//   landscapingWater: string[];
-// };
-
-function Landscaping() {
-
+function Landscaping({landscapingCategories}: {landscapingCategories: landscapingCategorie[]}) {
     return (
         <div className="landscaping">
             <h2>Landscaping Gallery</h2>
