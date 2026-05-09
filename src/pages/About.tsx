@@ -3,8 +3,8 @@ function About() {
     return (
         <div className="about">
             <h2>About Us</h2>
-            <img className='portrait-left' src='portraits/parker.webp'/>
-            <img className='portrait-right' src='portraits/roach.webp'/>
+            <img className='portrait-left' src='portraits/parker.jpg'/>
+            <img className='portrait-right' src='portraits/roach.jpg'/>
             <p className="about-body">
 
                 Our family has deep roots in Lake Tahoe, and I made Tahoe home after moving here in high school. Since then, the mountains and Sierra landscape have shaped both my life and my work. Years spent exploring the region created a lasting respect for the natural beauty, climate, and character that make mountain properties unique.<br/><br/>
