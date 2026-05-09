@@ -59,6 +59,7 @@ h2, h3 {
   text-align: center;
 }
 h2 {
+  margin-bottom: 5vh;
   font-size: clamp(.9rem, 1.6vw, 1.6rem);
 }
 h3 {
@@ -341,7 +342,7 @@ h3 {
   /*===================*/
 
   /* ===== Iron Works Mobile ====*/
-  .ironworks-img {
+  .gallery-img {
     width: 20vh;
     height: 15vh;
   }
