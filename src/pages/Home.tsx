@@ -16,7 +16,7 @@ function Home({landscapingCategories}: {landscapingCategories: landscapingCatego
 
         for (let i = 1; i <= 8; i++ ) {
             // curURLS.push(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto/Ironworks/${i}`); //Production
-            curIronWorkURLS.push(`${baseURL}IronWorks/${i}.jpg`); //DEV
+            curIronWorkURLS.push(`${baseURL}ironworks/${i}.jpg`); //DEV
         }
         landscapingCategories.forEach((curCat) => {
             curLandscapingURLS.push(curCat.urls[0]);

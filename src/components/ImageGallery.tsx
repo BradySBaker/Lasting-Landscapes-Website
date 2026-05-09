@@ -20,6 +20,7 @@ function ImageGallery({folderName, urls}: {folderName: string, urls?: string[]})
 
     useEffect(() => {
         if (urls) {
+            console.log('occured');
             setGalleryURLS(urls);
             return;
         } 

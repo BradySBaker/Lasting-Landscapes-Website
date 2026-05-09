@@ -3,7 +3,7 @@ import {Routes, Route, Link } from "react-router-dom";
 
 export const baseURL = '/Lasting-Landscapes-Website/';
 
-import LandscapingLogo from "./components/landscapingLogo.tsx";
+import LandscapingLogo from "./components/icons/landscapingLogo.tsx";
 
 import Home from "./pages/Home.tsx";
 import Landscaping from "./pages/Landscaping.tsx";
@@ -24,8 +24,6 @@ const baseLandscapingCategories: landscapingCategory[] = [ //Landscaping Photo a
 
 
 function App() {
-  const [landscapingClicked, setLandscapingClicked] = useState<boolean>(false);
-
   const landscapingCategories: landscapingCategory[] = useMemo(() => {
     return baseLandscapingCategories.map(cat => ({
       ...cat,

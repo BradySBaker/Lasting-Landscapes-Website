@@ -4,7 +4,7 @@
 }
 
 footer {
-  font-size: clamp(.4vh, 2vw, 1rem);
+  font-size: clamp(1vh, .7vw, 1rem);
   font-style: italic;
 }
 
@@ -243,13 +243,24 @@ h3 {
   gap: 1rem;
 }
 .contact p, .contact a {
-  font-size: clamp(1vh, .8vw, 1rem);
+  font-size: clamp(2vh, .8vw, 1rem);
   color: rgba(240, 248, 255, 0.699);
   text-align: center;
 }
 .contact a {
    color: blue;
 }
+.licenses {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 10px;
+}
+.license {
+  width: clamp(6vh, 4vw, 4vw);
+  height: clamp(6vh, 4vw, 4vw);
+  fill: white;
+}
+
 /*=============================*/
 
 
