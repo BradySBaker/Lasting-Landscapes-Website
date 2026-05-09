@@ -1,4 +1,4 @@
-import CLCA from "./icons/clca";
+import CLCA from "./icons/CLCA";
 import CASEAL from "./icons/CASEAL";
 
 function Contact() {

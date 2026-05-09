@@ -59,7 +59,6 @@ h2, h3 {
   text-align: center;
 }
 h2 {
-  margin-bottom: 5vh;
   font-size: clamp(.9rem, 1.6vw, 1.6rem);
 }
 h3 {
@@ -293,6 +292,8 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: clamp(.9rem, 5vw, 1.6rem);
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
 .back-button, .spacer-button {
@@ -314,7 +315,9 @@ h3 {
 .spacer-button { /* This is just to keep the title centered */
   opacity: 0;
 }
-
+.category-title {
+  margin: 0;
+}
 
 /* ================================*/ 
 

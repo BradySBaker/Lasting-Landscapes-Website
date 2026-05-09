@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import { baseURL } from '../App';
+// import { baseURL } from '../App';
 import LazyImage from './LazyImage';
 
 const ironWorksCount = 28;
@@ -11,7 +11,9 @@ function ImageGallery({folderName, urls}: {folderName: string, urls?: string[]})
 
     const imageClick = (imgNum: number, url: string) => {
         setSelectedImgURL(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto/${folderName}/${imgNum}`); //Production
-        //  setSelectedImgURL(url) //Dev
+        if (url) {
+            //  setSelectedImgURL(url) //Dev
+        }
     }
 
     const imageClose = () => {
