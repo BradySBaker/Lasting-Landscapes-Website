@@ -3,7 +3,7 @@ import {Routes, Route, Link } from "react-router-dom";
 
 export const baseURL = '/Lasting-Landscapes-Website/';
 
-import LandscapingLogo from "./components/icons/landscapingLogo.tsx";
+import LandscapingLogo from "./components/icons/LandscapingLogo.tsx";
 
 import Home from "./pages/Home.tsx";
 import Landscaping from "./pages/Landscaping.tsx";
@@ -19,7 +19,7 @@ const baseLandscapingCategories: landscapingCategory[] = [ //Landscaping Photo a
     {name: 'Stonework & Grading', dir: 'Stonework_Grading', urls: [], count: 23},
     {name: 'Walkways & Pathways', dir: 'Walkways_Pathways', urls: [], count: 23},
     {name: 'Water Features & Ponds', dir: 'Water_Features_Ponds', urls: [], count: 11},
-    {name: 'Speciality Projects', dir: 'Speciality_Projects', urls: [], count: 6}
+    {name: 'Creative Projects', dir: 'Creative_Projects', urls: [], count: 6}
 ];
 
 
@@ -28,7 +28,8 @@ function App() {
     return baseLandscapingCategories.map(cat => ({
       ...cat,
       urls: Array.from({ length: cat.count }, (_, i) =>
-        `${baseURL}landscaping/${cat.dir}/${i + 1}.avif` //Dev
+        `https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto,w_400/${cat.dir}/${i + 1}` //Production
+        // `${baseURL}landscaping/${cat.dir}/${i + 1}.avif` //Dev
       )
     }));
   }, []);

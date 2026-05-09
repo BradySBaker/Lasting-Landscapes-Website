@@ -10,8 +10,8 @@ function ImageGallery({folderName, urls}: {folderName: string, urls?: string[]})
     const [selectedImgURL, setSelectedImgURL] = useState('');
 
     const imageClick = (imgNum: number, url: string) => {
-        // setSelectedImgURL(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto/${folderName}/${imgNum}`); //Production
-         setSelectedImgURL(url) //Dev
+        setSelectedImgURL(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto/${folderName}/${imgNum}`); //Production
+        //  setSelectedImgURL(url) //Dev
     }
 
     const imageClose = () => {
@@ -27,8 +27,8 @@ function ImageGallery({folderName, urls}: {folderName: string, urls?: string[]})
 
         const curURLS: string[] = [];
         for (let i = 1; i <= ironWorksCount; i++ ) {
-            // curURLS.push(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto,w_500/${folderName}/${i}`); //Production
-            curURLS.push(`${baseURL}${folderName}/${i}.jpg`); //DEV
+            curURLS.push(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto,w_400/${folderName}/${i}`); //Production
+            // curURLS.push(`${baseURL}${folderName}/${i}.jpg`); //DEV
         }
         setGalleryURLS(curURLS);
     }, [])

@@ -5,7 +5,7 @@ import ImageSlide from "../components/ImageSlide";
 import ImageGallery from '../components/ImageGallery';
 import type { landscapingCategory } from "../App";
 
-import BackArrow from '../components/icons/backArrowIcon';
+import BackArrow from '../components/icons/BackArrowIcon';
 
 function Landscaping({landscapingCategories}: {landscapingCategories: landscapingCategory[]}) {
     const [selectedCategory, setSelectedCategory] = useState<landscapingCategory | false>(false);
