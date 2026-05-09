@@ -1,5 +1,7 @@
 function ImageSlide({imgURLS}: {imgURLS: string[]}) {
 
+
+
     const loopURLS = [...imgURLS, ...imgURLS]
     return(
         <div className="image-slide">

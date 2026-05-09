@@ -2,14 +2,16 @@ import {useEffect, useState} from 'react'
 import { baseURL } from '../App';
 import LazyImage from './LazyImage';
 
-function ImageGallery({folderName}: {folderName: string}) {
+const ironWorksCount = 28;
+
+function ImageGallery({folderName, urls}: {folderName: string, urls?: string[]}) {
 
     const [galleryURLS, setGalleryURLS] = useState<string[]>([]);
     const [selectedImgURL, setSelectedImgURL] = useState('');
 
-    const imageClick = (imgNum: number) => {
+    const imageClick = (imgNum: number, url: string) => {
         // setSelectedImgURL(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto/${folderName}/${imgNum}`); //Production
-         setSelectedImgURL(`${baseURL}${folderName}/${imgNum}.jpg`) //Dev
+         setSelectedImgURL(url) //Dev
     }
 
     const imageClose = () => {
@@ -17,8 +19,13 @@ function ImageGallery({folderName}: {folderName: string}) {
     }
 
     useEffect(() => {
+        if (urls) {
+            setGalleryURLS(urls);
+            return;
+        } 
+
         const curURLS: string[] = [];
-        for (let i = 1; i <= 28; i++ ) {
+        for (let i = 1; i <= ironWorksCount; i++ ) {
             // curURLS.push(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto,w_500/${folderName}/${i}`); //Production
             curURLS.push(`${baseURL}${folderName}/${i}.jpg`); //DEV
         }
@@ -36,7 +43,7 @@ function ImageGallery({folderName}: {folderName: string}) {
             <div className='gallery-img-container'>
             {galleryURLS.map((curURL, index) => {
                 return (
-                    <LazyImage key={curURL} src={curURL} onClick={() => imageClick(index + 1)} />
+                    <LazyImage key={curURL} src={curURL} onClick={() => imageClick(index + 1, curURL)} />
                 )
             })}
             </div>

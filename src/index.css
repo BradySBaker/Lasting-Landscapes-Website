@@ -49,7 +49,6 @@ a {
   height: 5vw;
   fill: white;
 }
-
 h1 {
   white-space: nowrap;
   text-align: center;
@@ -276,6 +275,37 @@ h3 {
   }
 /*==============================*/
 
+/* ========= Landscaping Page ======= */
+.landscaping-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(.9rem, 5vw, 1.6rem);
+}
+
+.back-button, .spacer-button {
+  width: 2vw;
+  height: 2vw;
+  fill: rgba(255, 255, 255, 0.749);
+  border-radius: 10px;
+  transition: .2s;
+}
+
+.back-button {
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #ffffff1b;
+}
+
+.spacer-button { /* This is just to keep the title centered */
+  opacity: 0;
+}
+
+
+/* ================================*/ 
+
 /* ======== ========*/
 
 @media (orientation: portrait) {
@@ -316,4 +346,8 @@ h3 {
     height: 15vh;
   }
   /* ===========================*/
+  .back-button, .spacer-button {
+    width: 4vh;
+    height: 4vh;
+  }
 }

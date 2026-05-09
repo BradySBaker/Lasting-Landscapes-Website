@@ -10,10 +10,10 @@ import Landscaping from "./pages/Landscaping.tsx";
 import Ironworks from "./pages/Ironworks.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./components/Contact.tsx";
-export type landscapingCategorie = {name: string, dir: string, urls: string[], count: number}
+export type landscapingCategory = {name: string, dir: string, urls: string[], count: number}
 
 
-const baseLandscapingCategories: landscapingCategorie[] = [ //Landscaping Photo and Category Info
+const baseLandscapingCategories: landscapingCategory[] = [ //Landscaping Photo and Category Info
     {name: 'Patios & Outdoor Living', dir: 'Patios_Outdoor_Living', urls: [], count: 53},
     {name: 'Planting & Softscapes', dir: 'Planting_Softscapes', urls: [], count: 34},
     {name: 'Stonework & Grading', dir: 'Stonework_Grading', urls: [], count: 23},
@@ -24,7 +24,9 @@ const baseLandscapingCategories: landscapingCategorie[] = [ //Landscaping Photo 
 
 
 function App() {
-  const landscapingCategories: landscapingCategorie[] = useMemo(() => {
+  const [landscapingClicked, setLandscapingClicked] = useState<boolean>(false);
+
+  const landscapingCategories: landscapingCategory[] = useMemo(() => {
     return baseLandscapingCategories.map(cat => ({
       ...cat,
       urls: Array.from({ length: cat.count }, (_, i) =>
@@ -63,7 +65,7 @@ function App() {
 
       <Routes> {/* Pages */}
         <Route path="/" element={<Home landscapingCategories={landscapingCategories}/>} />
-        <Route path="/landscaping" element={<Landscaping  landscapingCategories={landscapingCategories}/>} />
+        <Route path="/landscaping" element={<Landscaping  landscapingCategories={landscapingCategories}/>}/>
         <Route path="/ironworks" element={<Ironworks />} />
         <Route path="/about" element={<About />} />
       </Routes>
