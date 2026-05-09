@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ImageSlide from "../components/ImageSlide";
 import type { landscapingCategorie } from "../App";
 
@@ -10,7 +9,7 @@ function Landscaping({landscapingCategories}: {landscapingCategories: landscapin
                 return(
                 <div className="image-slide-container">
                     <h2 className="image-slide-title">{curCat.name}</h2>
-                    <ImageSlide imgURLS={['URLS']}/>
+                    <ImageSlide imgURLS={curCat.urls.slice(0, 7)}/>
                 </div>
                 )
             })}

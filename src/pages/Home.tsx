@@ -2,8 +2,9 @@ import {Link} from "react-router-dom"
 import ImageSlide from "../components/ImageSlide";
 import {useEffect, useState} from "react";
 import {baseURL} from '../App';
+import type { landscapingCategory } from "../App";
 
-function Home() {
+function Home({landscapingCategories}: {landscapingCategories: landscapingCategory[]}) {
     const [ironWorksURLS, setIronWorkURLS] = useState<string[]>([]);
     const [landscapingHomeURLS, setLandscapingHomeURLS] = useState<string[]>([]);
 
@@ -17,6 +18,10 @@ function Home() {
             // curURLS.push(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto/Ironworks/${i}`); //Production
             curIronWorkURLS.push(`${baseURL}IronWorks/${i}.jpg`); //DEV
         }
+        landscapingCategories.forEach((curCat) => {
+            curLandscapingURLS.push(curCat.urls[0]);
+        });
+        console.log(curLandscapingURLS);
 
         setIronWorkURLS(curIronWorkURLS);
         setLandscapingHomeURLS(curLandscapingURLS);

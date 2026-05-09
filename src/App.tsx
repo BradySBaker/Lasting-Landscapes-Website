@@ -28,7 +28,7 @@ function App() {
     return baseLandscapingCategories.map(cat => ({
       ...cat,
       urls: Array.from({ length: cat.count }, (_, i) =>
-        `${baseURL}landscaping/${cat.dir}/${i + 1}.avif`
+        `${baseURL}landscaping/${cat.dir}/${i + 1}.avif` //Dev
       )
     }));
   }, []);
@@ -62,7 +62,7 @@ function App() {
       </div>
 
       <Routes> {/* Pages */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home landscapingCategories={landscapingCategories}/>} />
         <Route path="/landscaping" element={<Landscaping  landscapingCategories={landscapingCategories}/>} />
         <Route path="/ironworks" element={<Ironworks />} />
         <Route path="/about" element={<About />} />
