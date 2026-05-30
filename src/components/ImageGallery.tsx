@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 // import { baseURL } from '../App';
 import LazyImage from './LazyImage';
 
-const ironWorksCount = 28;
+const ironWorksCount = 35;
 
 function ImageGallery({folderName, urls}: {folderName: string, urls?: string[]}) {
 
