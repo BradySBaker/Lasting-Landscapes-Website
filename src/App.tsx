@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import {Routes, Route, Link } from "react-router-dom";
 
-export const baseURL = '/Lasting-Landscapes-Website/';
+export const baseURL = '/';
 
 import LandscapingLogo from "./components/icons/LandscapingLogo.tsx";
 
