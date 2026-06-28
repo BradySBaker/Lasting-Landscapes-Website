@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {Routes, Route, Link } from "react-router-dom";
 
 export const baseURL = '/';
@@ -10,29 +10,33 @@ import Landscaping from "./pages/Landscaping.tsx";
 import Ironworks from "./pages/Ironworks.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./components/Contact.tsx";
+
+import getStaticGalleryData from "./StaticGalleryData.tsx";
+
 export type landscapingCategory = {name: string, dir: string, urls: string[], count: number}
+export type galleryDataType = {category: {folder: string, url: string[]}[]}
 
-
-const baseLandscapingCategories: landscapingCategory[] = [ //Landscaping Photo and Category Info
-    {name: 'Patios & Outdoor Living', dir: 'Patios_Outdoor_Living', urls: [], count: 53},
-    {name: 'Planting & Softscapes', dir: 'Planting_Softscapes', urls: [], count: 34},
-    {name: 'Stonework & Grading', dir: 'Stonework_Grading', urls: [], count: 23},
-    {name: 'Walkways & Pathways', dir: 'Walkways_Pathways', urls: [], count: 23},
-    {name: 'Water Features & Ponds', dir: 'Water_Features_Ponds', urls: [], count: 11},
-    {name: 'Creative Projects', dir: 'Creative_Projects', urls: [], count: 6}
-];
 
 
 function App() {
-  const landscapingCategories: landscapingCategory[] = useMemo(() => {
-    return baseLandscapingCategories.map(cat => ({
-      ...cat,
-      urls: Array.from({ length: cat.count }, (_, i) =>
-        `https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto,w_400/${cat.dir}/${i + 1}` //Production
-        // `${baseURL}landscaping/${cat.dir}/${i + 1}.avif` //Dev
-      )
-    }));
+  
+  const [galleryData, setGalleryData] = useState<galleryDataType | null>(null);
+
+  useEffect(() => {
+    fetch("https://cloudinary-worker-roach.bradysamuelbaker.workers.dev/galleryData")
+      .then((res) => {
+        if (!res.ok) {
+          console.log("Status:", res.status);
+          return;
+        }
+        console.log(res);
+        return res.json();
+      }).then((data) => setGalleryData(data));
   }, []);
+
+  console.log(galleryData);
+
+  const staticGalleryData: landscapingCategory[] = useMemo(() => getStaticGalleryData(), []); //Incase of server outage
 
   const ironWorksLogos = [
     baseURL + 'icons/Hammer Anvil 0.png',
@@ -63,8 +67,8 @@ function App() {
       </div>
 
       <Routes> {/* Pages */}
-        <Route path="/" element={<Home landscapingCategories={landscapingCategories}/>} />
-        <Route path="/landscaping" element={<Landscaping  landscapingCategories={landscapingCategories}/>}/>
+        <Route path="/" element={<Home landscapingCategories={staticGalleryData}/>} />
+        <Route path="/landscaping" element={<Landscaping  landscapingCategories={staticGalleryData}/>}/>
         <Route path="/ironworks" element={<Ironworks />} />
         <Route path="/about" element={<About />} />
       </Routes>
