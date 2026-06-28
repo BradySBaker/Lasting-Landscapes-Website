@@ -56,8 +56,8 @@ function App() {
   console.log(galleryData);
 
   const ironWorksLogos = [
-    baseURL + 'icons/Hammer Anvil 0.png',
-    baseURL + 'icons/Hammer Anvil.gif'
+    '/icons/Hammer Anvil 0.png',
+    '/icons/Hammer Anvil.gif'
   ];
   const [ironWorkIconSrc, setIronWorkIconSrc] = useState(ironWorksLogos[0]);
 
