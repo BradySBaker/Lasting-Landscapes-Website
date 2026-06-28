@@ -11,32 +11,49 @@ import Ironworks from "./pages/Ironworks.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./components/Contact.tsx";
 
-import getStaticGalleryData from "./StaticGalleryData.tsx";
+import getStaticRawGalleryData from "./StaticGalleryData.tsx";
 
-export type landscapingCategory = {name: string, dir: string, urls: string[], count: number}
-export type galleryDataType = {category: {folder: string, url: string[]}[]}
+export type galleryDataType = {[category: string]: {icon: string, full: string}[]}
+export type rawGalleryDataType = {[category: string]: string[]}
 
-
+export const ironworkFolderNames: {[key: string]: boolean} = {
+  Ironworks: true,
+};
 
 function App() {
-  
-  const [galleryData, setGalleryData] = useState<galleryDataType | null>(null);
+  const [galleryData, setGalleryData] = useState<galleryDataType | undefined>();
+  const staticRawGalleryData: rawGalleryDataType = useMemo(() => getStaticRawGalleryData(), []); //Incase of server outage
+  const baseURL = `https://res.cloudinary.com/dztqjtask/image/upload/`
+
+  const createGalleryData = (rawGalleryData: rawGalleryDataType) => {
+    const result: galleryDataType = {};
+    for (const [key, value] of Object.entries(rawGalleryData)) {
+
+      result[key] = [];
+
+      value.forEach((cur) => {
+        result[key].push({icon: `${baseURL}f_auto,q_auto,w_400/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
+      })
+    }
+    setGalleryData(result);
+  }
 
   useEffect(() => {
     fetch("https://cloudinary-worker-roach.bradysamuelbaker.workers.dev/galleryData")
       .then((res) => {
         if (!res.ok) {
-          console.log("Status:", res.status);
-          return;
+          throw new Error("Fetch failed");
         }
-        console.log(res);
         return res.json();
-      }).then((data) => setGalleryData(data));
+      })
+      .then((data: rawGalleryDataType) => createGalleryData(data))
+      .catch(() => {
+        console.log("Using static gallery data fetch failed");
+        createGalleryData(staticRawGalleryData);
+      });
   }, []);
 
   console.log(galleryData);
-
-  const staticGalleryData: landscapingCategory[] = useMemo(() => getStaticGalleryData(), []); //Incase of server outage
 
   const ironWorksLogos = [
     baseURL + 'icons/Hammer Anvil 0.png',
@@ -67,9 +84,9 @@ function App() {
       </div>
 
       <Routes> {/* Pages */}
-        <Route path="/" element={<Home landscapingCategories={staticGalleryData}/>} />
-        <Route path="/landscaping" element={<Landscaping  landscapingCategories={staticGalleryData}/>}/>
-        <Route path="/ironworks" element={<Ironworks />} />
+        <Route path="/" element={<Home galleryData={galleryData}/>} />
+        <Route path="/landscaping" element={<Landscaping galleryData={galleryData}/>}/>
+        <Route path="/ironworks" element={<Ironworks galleryData={galleryData}/>} />
         <Route path="/about" element={<About />} />
       </Routes>
 

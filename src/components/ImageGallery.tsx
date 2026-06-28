@@ -1,52 +1,22 @@
-import {useEffect, useState} from 'react'
-// import { baseURL } from '../App';
+import {useState} from 'react'
 import LazyImage from './LazyImage';
+import type { singleGalleryType } from '../pages/Landscaping';
 
-const ironWorksCount = 35;
-
-function ImageGallery({folderName, urls}: {folderName: string, urls?: string[]}) {
-
-    const [galleryURLS, setGalleryURLS] = useState<string[]>([]);
+function ImageGallery({singleGallery}: {singleGallery: singleGalleryType}) {
     const [selectedImgURL, setSelectedImgURL] = useState('');
-
-    const imageClick = (imgNum: number, url: string) => {
-        setSelectedImgURL(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto/${folderName}/${imgNum}`); //Production
-        if (url) {
-            //  setSelectedImgURL(url) //Dev
-        }
-    }
-
-    const imageClose = () => {
-        setSelectedImgURL('');
-    }
-
-    useEffect(() => {
-        if (urls) {
-            console.log('occured');
-            setGalleryURLS(urls);
-            return;
-        } 
-
-        const curURLS: string[] = [];
-        for (let i = 1; i <= ironWorksCount; i++ ) {
-            curURLS.push(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto,w_400/${folderName}/${i}`); //Production
-            // curURLS.push(`${baseURL}${folderName}/${i}.jpg`); //DEV
-        }
-        setGalleryURLS(curURLS);
-    }, [])
 
     return (
         <div className="gallery">
             {selectedImgURL && 
-                <div className='backdrop' onClick={imageClose}>
+                <div className='backdrop' onClick={() => setSelectedImgURL('')}>
                     <img className='selected-image' src={selectedImgURL}/>
                 </div>
             }
             
             <div className='gallery-img-container'>
-            {galleryURLS.map((curURL, index) => {
+            {singleGallery.URLS.map((curURL) => {
                 return (
-                    <LazyImage key={curURL} src={curURL} onClick={() => imageClick(index + 1, curURL)} />
+                    <LazyImage key={curURL.icon} src={curURL.icon} onClick={() => setSelectedImgURL(curURL.full)} />
                 )
             })}
             </div>

@@ -1,10 +1,11 @@
+import type { galleryDataType } from "../App";
 import ImageGallery from "../components/ImageGallery";
 
-function Ironworks() {
+function Ironworks({galleryData}: {galleryData?: galleryDataType}) {
     return(
         <div className="ironworks">
             <h2>Custom Fabrication</h2>
-            <ImageGallery folderName="ironworks"/>
+            {galleryData?.Ironworks && <ImageGallery singleGallery={{folder: 'Ironworks', URLS: galleryData.Ironworks}}/>}
         </div>
     )
 }

@@ -3,54 +3,59 @@ import { useLocation } from "react-router-dom";
 
 import ImageSlide from "../components/ImageSlide";
 import ImageGallery from '../components/ImageGallery';
-import type { landscapingCategory } from "../App";
+import { ironworkFolderNames, type galleryDataType } from '../App';
 
 import BackArrow from '../components/icons/BackArrowIcon';
 
-function Landscaping({landscapingCategories}: {landscapingCategories: landscapingCategory[]}) {
-    const [selectedCategory, setSelectedCategory] = useState<landscapingCategory | false>(false);
+export type singleGalleryType = {folder: string, URLS: {icon: string, full: string}[]};
+
+function Landscaping({galleryData}: {galleryData?: galleryDataType}) {
+    const [selectedGallery, setSelectedGallery] = useState<singleGalleryType | false>(false);
 
     const location = useLocation();
 
     const exitGallery = () => {
-        setSelectedCategory(false);
+        setSelectedGallery(false);
         console.log('occured');
     };
 
     useEffect(() => { //When landscaping route clicked
-        if(selectedCategory) {
+        if(selectedGallery) {
             exitGallery();
         }
     }, [location.key]);
 
-    const slideClicked = (slide: landscapingCategory) => {
-        setSelectedCategory(slide);
+    const slideClicked = (slide: singleGalleryType) => {
+        setSelectedGallery(slide);
     };
 
 
     return (
         <div className="landscaping">
             {
-            !selectedCategory ? <h2>Landscaping Gallery</h2> :  /* Gallery title and back button */
+            !selectedGallery ? <h2>Landscaping Gallery</h2> :  /* Gallery title and back button */
 
             <div className='landscaping-title-container'>
                 <BackArrow onClick={exitGallery} classname={"back-button"}/>
-                <h2>{selectedCategory.name}</h2> 
+                <h2>{selectedGallery.folder}</h2> 
                 <BackArrow classname={"spacer-button"}/>
             </div>
             }
 
-            {!selectedCategory ? 
-            landscapingCategories.map((curCat) => {
+            {!selectedGallery && galleryData ? 
+            Object.entries(galleryData).map(([key, value]) => {
+                if (ironworkFolderNames[key]) {
+                    return;
+                }
                 return(
-                <div className="image-slide-container" onClick={() => slideClicked(curCat)}>
-                    <h2 className="image-slide-title">{curCat.name}</h2>
-                    <ImageSlide imgURLS={curCat.urls.slice(0, 7)} />
+                <div className="image-slide-container" onClick={() => slideClicked({folder: key, URLS: value})}>
+                    <h2 className="image-slide-title">{key.replaceAll('_', ' ')}</h2>
+                    <ImageSlide imgURLS={value.slice(0, 7)} />
                 </div>
                 )
             })
             :
-            <ImageGallery folderName={selectedCategory.dir} urls={selectedCategory.urls} />
+            <ImageGallery singleGallery={selectedGallery as singleGalleryType} />
         }
         </div>
     )

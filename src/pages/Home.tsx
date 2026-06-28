@@ -1,31 +1,34 @@
 import {Link} from "react-router-dom"
 import ImageSlide from "../components/ImageSlide";
 import {useEffect, useState} from "react";
-// import {baseURL} from '../App';
-import type { landscapingCategory } from "../App";
+import type { galleryDataType } from "../App";
+import { ironworkFolderNames } from "../App";
 
-function Home({landscapingCategories}: {landscapingCategories: landscapingCategory[]}) {
-    const [ironWorksURLS, setIronWorkURLS] = useState<string[]>([]);
-    const [landscapingHomeURLS, setLandscapingHomeURLS] = useState<string[]>([]);
+function Home({galleryData}: {galleryData?: galleryDataType}) {
+    const [ironWorksURLS, setIronWorkURLS] = useState<{icon: string, full: string}[]>([]);
+    const [landscapingHomeURLS, setLandscapingHomeURLS] = useState<{icon: string, full: string}[]>([]);
 
 
     useEffect(() => {
-        const curIronWorkURLS: string[] = [];
-
-        let curLandscapingURLS: string[] = [];
-
-        for (let i = 1; i <= 8; i++ ) {
-            curIronWorkURLS.push(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto,w_400/Ironworks/${i}`); //Production
-            // curIronWorkURLS.push(`${baseURL}ironworks/${i}.jpg`); //DEV
+        if (!galleryData) {
+            return;
         }
-        landscapingCategories.forEach((curCat) => {
-            curLandscapingURLS.push(curCat.urls[0]);
-        });
-        console.log(curLandscapingURLS);
+        const curIronWorkURLS: {icon: string, full: string}[] = [];
+        const curLandscapingURLS: {icon: string, full: string}[] = [];
+
+        for (const [key, value] of Object.entries(galleryData)) {
+            if (!ironworkFolderNames[key]) { //Skip any ironwork folders
+                curLandscapingURLS.push(value[0]);
+            }
+        }
+
+        for (let i = 1; i <= 8; i++ ) { //For ironworks since there's only one category we choose first 8
+            curIronWorkURLS.push(galleryData.Ironworks[i]);
+        }
 
         setIronWorkURLS(curIronWorkURLS);
         setLandscapingHomeURLS(curLandscapingURLS);
-    }, []);
+    }, [galleryData]);
     
     return (
         <>
