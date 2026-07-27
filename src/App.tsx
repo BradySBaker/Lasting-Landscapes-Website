@@ -28,12 +28,15 @@ function App() {
   const createGalleryData = (rawGalleryData: rawGalleryDataType) => {
     const result: galleryDataType = {};
     for (const [key, value] of Object.entries(rawGalleryData)) {
+      if (key === "Aerial_Showcases") {
+        console.log("");
+      } else {
+        result[key] = [];
 
-      result[key] = [];
-
-      value.forEach((cur) => {
-        result[key].push({icon: `${baseURL}f_auto,q_auto,w_400/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
-      })
+        value.forEach((cur) => {
+          result[key].push({icon: `${baseURL}f_auto,q_auto,w_400/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
+        })
+      }
     }
     setGalleryData(result);
   }
