@@ -23,7 +23,7 @@ export const ironworkFolderNames: {[key: string]: boolean} = {
 
 function App() {
   const [galleryData, setGalleryData] = useState<galleryDataType | undefined>();
-  const [videoData, setVideoData] = useState<mediaDataType | undefined>();
+  const [droneVideoData,   setDroneVideoData] = useState<mediaDataType | undefined>();
   const staticRawGalleryData: rawGalleryDataType = useMemo(() => getStaticRawGalleryData(), []); //Incase of server outage
   const baseURL = `https://res.cloudinary.com/dztqjtask/image/upload/`
 
@@ -38,11 +38,13 @@ function App() {
         value.forEach((cur) => {
           videoResult.push({icon: `${baseURL}w_854,h_480,c_limit,f_auto,q_auto/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
         })
+      } else {
+        value.forEach((cur) => {
+          galleryResult[key].push({icon: `${baseURL}f_auto,q_auto,w_400/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
+        })
       }
-      value.forEach((cur) => {
-        galleryResult[key].push({icon: `${baseURL}f_auto,q_auto,w_400/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
-      })
     }
+    setDroneVideoData(videoResult);
     setGalleryData(galleryResult);
   }
 
@@ -69,10 +71,11 @@ function App() {
   const [ironWorkIconSrc, setIronWorkIconSrc] = useState(ironWorksLogos[0]);
 
 
+
   return (
     <>
       <div className="header">
-        { location.pathname === "/" && 
+        { location.pathname === "/ " && 
         <video autoPlay muted loop playsInline>
           <source src="/public/drone/drone.mp4"  type="video/mp4"/>
         </video>
