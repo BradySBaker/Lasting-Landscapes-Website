@@ -30,7 +30,7 @@ function Landscaping({galleryData}: {galleryData?: galleryDataType}) {
     };
 
 
-    return (
+   return (
         <div className="landscaping">
             {
             !selectedGallery ? <h2>Landscaping Gallery</h2> :  /* Gallery title and back button */
@@ -41,21 +41,24 @@ function Landscaping({galleryData}: {galleryData?: galleryDataType}) {
                 <BackArrow classname={"spacer-button"}/>
             </div>
             }
-
-            {!selectedGallery && galleryData ? 
-            Object.entries(galleryData).map(([key, value]) => {
-                if (ironworkFolderNames[key]) {
-                    return;
+            {galleryData &&
+            <>
+                {!selectedGallery ? 
+                    Object.entries(galleryData).map(([key, value]) => {
+                        if (ironworkFolderNames[key]) {
+                            return;
+                        }
+                        return(
+                        <div className="image-slide-container" onClick={() => slideClicked({folder: key, URLS: value})}>
+                            <h2 className="image-slide-title">{key.replaceAll('_', ' ')}</h2>
+                            <ImageSlide imgURLS={value.slice(0, 7)} />
+                        </div>
+                        )
+                    })
+                    :
+                    <ImageGallery singleGallery={selectedGallery as singleGalleryType} />
                 }
-                return(
-                <div className="image-slide-container" onClick={() => slideClicked({folder: key, URLS: value})}>
-                    <h2 className="image-slide-title">{key.replaceAll('_', ' ')}</h2>
-                    <ImageSlide imgURLS={value.slice(0, 7)} />
-                </div>
-                )
-            })
-            :
-            <ImageGallery singleGallery={selectedGallery as singleGalleryType} />
+            </>
         }
         </div>
     )
