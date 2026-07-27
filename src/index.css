@@ -25,7 +25,7 @@ a {
 
 .header {
   position: relative;
-  background-color: #020617;
+  background-color: #040b2b;
   width: 100%;
   padding-bottom: 2vh;
   height: 15vw;
@@ -108,6 +108,7 @@ h3 {
   border-top-right-radius: 10px;
   padding-top: 10px;
   box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.795);
+  padding-bottom: 20px;
 }
 
 .navbar-buttons {
