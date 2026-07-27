@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import {Routes, Route, Link } from "react-router-dom";
+import {Routes, Route, Link, useLocation } from "react-router-dom";
 
 export const baseURL = '/';
 
@@ -25,6 +25,8 @@ function App() {
   const staticRawGalleryData: rawGalleryDataType = useMemo(() => getStaticRawGalleryData(), []); //Incase of server outage
   const baseURL = `https://res.cloudinary.com/dztqjtask/image/upload/`
 
+  const location = useLocation();
+  
   const createGalleryData = (rawGalleryData: rawGalleryDataType) => {
     const result: galleryDataType = {};
     for (const [key, value] of Object.entries(rawGalleryData)) {
@@ -53,7 +55,6 @@ function App() {
       });
   }, []);
 
-  console.log(galleryData);
 
   const ironWorksLogos = [
     '/icons/Hammer Anvil 0.png',
@@ -65,21 +66,27 @@ function App() {
   return (
     <>
       <div className="header">
+        { location.pathname === "/" && <video autoPlay muted loop playsInline>
+          <source src="/public/drone/drone.mp4"  type="video/mp4"/>
+        </video>
+        }
         <div className='header-content'>
-        <div className='header-title'>
-          <h1>Lasting Landscapes</h1>
-          <LandscapingLogo />
-        </div>
-        <div className='underline'></div>
+          <div className='header-title'>
+            <h1>Lasting Landscapes</h1>
+            <LandscapingLogo />
+          </div>
+          <div className='underline'/>
       </div>
-      <div className="navbar"> 
-          <Link className='navbar-buttons' to="/">Home</Link>
-          <Link className='navbar-buttons' to="/landscaping">Landscaping</Link>
-          <Link to="/ironworks" className="ironworks-button" onMouseEnter={() => {setIronWorkIconSrc(ironWorksLogos[1])}} onMouseLeave={() => {setIronWorkIconSrc(ironWorksLogos[0])}}>
-            <p className='navbar-buttons'>Ironworks</p>
-            <img className='anvil-hammer' src={ironWorkIconSrc}/>
-          </Link>
-          <Link className='navbar-buttons' to="/about">About</Link>
+        <div className="navbar"> 
+          <div className="navbar-container">
+            <Link className='navbar-buttons' to="/">Home</Link>
+            <Link className='navbar-buttons' to="/landscaping">Landscaping</Link>
+            <Link to="/ironworks" className="ironworks-button" onMouseEnter={() => {setIronWorkIconSrc(ironWorksLogos[1])}} onMouseLeave={() => {setIronWorkIconSrc(ironWorksLogos[0])}}>
+              <p className='navbar-buttons'>Ironworks</p>
+              <img className='anvil-hammer' src={ironWorkIconSrc}/>
+            </Link>
+            <Link className='navbar-buttons' to="/about">About</Link>
+          </div>
         </div> 
       </div>
 
