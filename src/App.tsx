@@ -66,7 +66,8 @@ function App() {
   return (
     <>
       <div className="header">
-        { location.pathname === "/" && <video autoPlay muted loop playsInline>
+        { location.pathname === "/" && 
+        <video autoPlay muted loop playsInline>
           <source src="/public/drone/drone.mp4"  type="video/mp4"/>
         </video>
         }
@@ -78,7 +79,7 @@ function App() {
           <div className='underline'/>
       </div>
         <div className="navbar"> 
-          <div className="navbar-container">
+          <div className="navbar-container"  style={location.pathname !== "/" ? {'backgroundColor': 'transparent'} : undefined}>
             <Link className='navbar-buttons' to="/">Home</Link>
             <Link className='navbar-buttons' to="/landscaping">Landscaping</Link>
             <Link to="/ironworks" className="ironworks-button" onMouseEnter={() => {setIronWorkIconSrc(ironWorksLogos[1])}} onMouseLeave={() => {setIronWorkIconSrc(ironWorksLogos[0])}}>
