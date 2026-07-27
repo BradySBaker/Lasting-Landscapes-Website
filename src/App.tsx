@@ -13,7 +13,8 @@ import Contact from "./components/Contact.tsx";
 
 import getStaticRawGalleryData from "./StaticGalleryData.tsx";
 
-export type galleryDataType = {[category: string]: {icon: string, full: string}[]}
+export type mediaDataType = {icon: string, full: string}[]
+export type galleryDataType = {[category: string]: mediaDataType}
 export type rawGalleryDataType = {[category: string]: string[]}
 
 export const ironworkFolderNames: {[key: string]: boolean} = {
@@ -22,22 +23,27 @@ export const ironworkFolderNames: {[key: string]: boolean} = {
 
 function App() {
   const [galleryData, setGalleryData] = useState<galleryDataType | undefined>();
+  const [videoData, setVideoData] = useState<mediaDataType | undefined>();
   const staticRawGalleryData: rawGalleryDataType = useMemo(() => getStaticRawGalleryData(), []); //Incase of server outage
   const baseURL = `https://res.cloudinary.com/dztqjtask/image/upload/`
 
   const location = useLocation();
   
   const createGalleryData = (rawGalleryData: rawGalleryDataType) => {
-    const result: galleryDataType = {};
+    const galleryResult: galleryDataType = {};
+    const videoResult: mediaDataType = [];
     for (const [key, value] of Object.entries(rawGalleryData)) {
-
-      result[key] = [];
-
+      galleryResult[key] = [];
+      if (key === "Aerial_Showcases") {
+        value.forEach((cur) => {
+          videoResult.push({icon: `${baseURL}w_854,h_480,c_limit,f_auto,q_auto/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
+        })
+      }
       value.forEach((cur) => {
-        result[key].push({icon: `${baseURL}f_auto,q_auto,w_400/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
+        galleryResult[key].push({icon: `${baseURL}f_auto,q_auto,w_400/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
       })
     }
-    setGalleryData(result);
+    setGalleryData(galleryResult);
   }
 
   useEffect(() => {
