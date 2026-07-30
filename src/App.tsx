@@ -69,13 +69,14 @@ function App() {
     '/icons/Hammer Anvil.gif'
   ];
   const [ironWorkIconSrc, setIronWorkIconSrc] = useState(ironWorksLogos[0]);
-
-
+  if (location.pathname === "/") {
+    console.log(true);
+  }
 
   return (
     <>
       <div className="header">
-        { location.pathname === "/ " && 
+        { location.pathname === "/" && 
         <video autoPlay muted loop playsInline>
           <source src="/public/drone/drone.mp4"  type="video/mp4"/>
         </video>
