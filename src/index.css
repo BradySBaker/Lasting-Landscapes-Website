@@ -28,7 +28,7 @@ a {
   background-color: #040b2b;
   width: 100%;
   padding-bottom: 2vh;
-  height: 15vw;
+  height: 20vw;
   min-height: 20vh;
 }
 .header::after {
@@ -63,7 +63,6 @@ a {
 .landscaping-logo {
   margin-top: 1.5vh;
   margin-left: 2vh;
-
   width: 5vw;
   height: 5vw;
   fill: white;
@@ -85,8 +84,8 @@ h3 {
 }
 .underline {
   width: 50%;
-  height: .1rem;
-  background-color: rgba(255, 253, 253, 0.548);
+  height: .05rem;
+  background-color: rgb(255, 253, 253);
 }
 .navbar {
   position: absolute;
