@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import {Routes, Route, Link } from "react-router-dom";
+import {Routes, Route, Link, useLocation } from "react-router-dom";
 
 export const baseURL = '/';
 
@@ -13,7 +13,8 @@ import Contact from "./components/Contact.tsx";
 
 import getStaticRawGalleryData from "./StaticGalleryData.tsx";
 
-export type galleryDataType = {[category: string]: {icon: string, full: string}[]}
+export type mediaDataType = {icon: string, full: string}[]
+export type galleryDataType = {[category: string]: mediaDataType}
 export type rawGalleryDataType = {[category: string]: string[]}
 
 export const ironworkFolderNames: {[key: string]: boolean} = {
@@ -22,23 +23,31 @@ export const ironworkFolderNames: {[key: string]: boolean} = {
 
 function App() {
   const [galleryData, setGalleryData] = useState<galleryDataType | undefined>();
+  const [droneVideoData,   setDroneVideoData] = useState<mediaDataType | undefined>();
   const staticRawGalleryData: rawGalleryDataType = useMemo(() => getStaticRawGalleryData(), []); //Incase of server outage
-  const baseURL = `https://res.cloudinary.com/dztqjtask/image/upload/`
+  const baseImageURL = `https://res.cloudinary.com/dztqjtask/image/upload/`
+  const baseVideoURL = `https://res.cloudinary.com/dztqjtask/video/upload/`
+  const aerialCompURL = 'Aerial_Showcases/Aerial_Comp.mp4';
 
+  const location = useLocation();
+  
   const createGalleryData = (rawGalleryData: rawGalleryDataType) => {
-    const result: galleryDataType = {};
+    const galleryResult: galleryDataType = {};
+    const videoResult: mediaDataType = [];
     for (const [key, value] of Object.entries(rawGalleryData)) {
-      if (key === "Aerial_Showcases") {
-        console.log("");
-      } else {
-        result[key] = [];
-
+      galleryResult[key] = [];
+      if (key === "Aerial_Showcases") { //Drone video
         value.forEach((cur) => {
-          result[key].push({icon: `${baseURL}f_auto,q_auto,w_400/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
+          videoResult.push({icon: `${baseVideoURL}w_854,h_480,c_limit,f_auto,q_auto/${cur}`, full: `${baseVideoURL}f_auto,q_auto/${cur}`})
+        })
+      } else {
+        value.forEach((cur) => {
+          galleryResult[key].push({icon: `${baseImageURL}f_auto,q_auto,w_400/${cur}`, full: `${baseImageURL}f_auto,q_auto/${cur}`})
         })
       }
     }
-    setGalleryData(result);
+    setDroneVideoData(videoResult);
+    setGalleryData(galleryResult);
   }
 
   useEffect(() => {
@@ -56,33 +65,41 @@ function App() {
       });
   }, []);
 
-  console.log(galleryData);
 
   const ironWorksLogos = [
     '/icons/Hammer Anvil 0.png',
     '/icons/Hammer Anvil.gif'
   ];
   const [ironWorkIconSrc, setIronWorkIconSrc] = useState(ironWorksLogos[0]);
-
+  if (location.pathname === "/") {
+    console.log(true);
+  }
 
   return (
     <>
       <div className="header">
+        { location.pathname === "/" && 
+        <video autoPlay muted loop playsInline>
+          <source src={`${baseVideoURL}f_auto,q_auto/${aerialCompURL}`}  type="video/mp4"/>
+        </video>
+        }
         <div className='header-content'>
-        <div className='header-title'>
-          <h1>Lasting Landscapes</h1>
-          <LandscapingLogo />
-        </div>
-        <div className='underline'></div>
+          <div className='header-title'>
+            <h1>Lasting Landscapes</h1>
+            <LandscapingLogo />
+          </div>
+          <div className='underline'/>
       </div>
-      <div className="navbar"> 
-          <Link className='navbar-buttons' to="/">Home</Link>
-          <Link className='navbar-buttons' to="/landscaping">Landscaping</Link>
-          <Link to="/ironworks" className="ironworks-button" onMouseEnter={() => {setIronWorkIconSrc(ironWorksLogos[1])}} onMouseLeave={() => {setIronWorkIconSrc(ironWorksLogos[0])}}>
-            <p className='navbar-buttons'>Ironworks</p>
-            <img className='anvil-hammer' src={ironWorkIconSrc}/>
-          </Link>
-          <Link className='navbar-buttons' to="/about">About</Link>
+        <div className="navbar"> 
+          <div className="navbar-container"  style={location.pathname !== "/" ? {'backgroundColor': 'transparent'} : undefined}>
+            <Link className='navbar-buttons' to="/">Home</Link>
+            <Link className='navbar-buttons' to="/landscaping">Landscaping</Link>
+            <Link to="/ironworks" className="ironworks-button" onMouseEnter={() => {setIronWorkIconSrc(ironWorksLogos[1])}} onMouseLeave={() => {setIronWorkIconSrc(ironWorksLogos[0])}}>
+              <p className='navbar-buttons'>Ironworks</p>
+              <img className='anvil-hammer' src={ironWorkIconSrc}/>
+            </Link>
+            <Link className='navbar-buttons' to="/about">About</Link>
+          </div>
         </div> 
       </div>
 
