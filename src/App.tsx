@@ -25,7 +25,9 @@ function App() {
   const [galleryData, setGalleryData] = useState<galleryDataType | undefined>();
   const [droneVideoData,   setDroneVideoData] = useState<mediaDataType | undefined>();
   const staticRawGalleryData: rawGalleryDataType = useMemo(() => getStaticRawGalleryData(), []); //Incase of server outage
-  const baseURL = `https://res.cloudinary.com/dztqjtask/image/upload/`
+  const baseImageURL = `https://res.cloudinary.com/dztqjtask/image/upload/`
+  const baseVideoURL = `https://res.cloudinary.com/dztqjtask/video/upload/`
+  const aerialCompURL = 'Aerial_Showcases/Aerial_Comp.mp4';
 
   const location = useLocation();
   
@@ -34,13 +36,13 @@ function App() {
     const videoResult: mediaDataType = [];
     for (const [key, value] of Object.entries(rawGalleryData)) {
       galleryResult[key] = [];
-      if (key === "Aerial_Showcases") {
+      if (key === "Aerial_Showcases") { //Drone video
         value.forEach((cur) => {
-          videoResult.push({icon: `${baseURL}w_854,h_480,c_limit,f_auto,q_auto/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
+          videoResult.push({icon: `${baseVideoURL}w_854,h_480,c_limit,f_auto,q_auto/${cur}`, full: `${baseVideoURL}f_auto,q_auto/${cur}`})
         })
       } else {
         value.forEach((cur) => {
-          galleryResult[key].push({icon: `${baseURL}f_auto,q_auto,w_400/${cur}`, full: `${baseURL}f_auto,q_auto/${cur}`})
+          galleryResult[key].push({icon: `${baseImageURL}f_auto,q_auto,w_400/${cur}`, full: `${baseImageURL}f_auto,q_auto/${cur}`})
         })
       }
     }
@@ -78,7 +80,7 @@ function App() {
       <div className="header">
         { location.pathname === "/" && 
         <video autoPlay muted loop playsInline>
-          <source src="/public/drone/drone.mp4"  type="video/mp4"/>
+          <source src={`${baseVideoURL}f_auto,q_auto/${aerialCompURL}`}  type="video/mp4"/>
         </video>
         }
         <div className='header-content'>
