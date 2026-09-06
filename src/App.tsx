@@ -80,7 +80,7 @@ function App() {
       <div className="header">
         { location.pathname === "/" && 
         <video autoPlay muted loop playsInline>
-          <source src={`${baseVideoURL}f_auto,q_auto/${aerialCompURL}`}  type="video/mp4"/>
+          <source src={`${baseVideoURL}${aerialCompURL}`}  type="video/mp4"/>
         </video>
         }
         <div className='header-content'>
