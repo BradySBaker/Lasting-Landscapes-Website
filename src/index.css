@@ -205,6 +205,7 @@ h3 {
   margin-right: .5rem;
 }
 
+
 @keyframes scroll {
   from {
     transform: translateX(0);
@@ -298,7 +299,7 @@ h3 {
 
 /* ====== Gallery Page ======*/
   .gallery-img-container {
-     display: flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 16px;
@@ -313,6 +314,10 @@ h3 {
   }
   .gallery-img:hover {
     transform: scale(1.03);
+  }
+  .video-frame {
+    width: 20vw;
+    height: 14vw;
   }
 /*==============================*/
 
@@ -395,6 +400,10 @@ h3 {
   .gallery-img {
     width: 20vh;
     height: 15vh;
+  }
+  .video-frame {
+    width: 20vh;
+    height: 14vh;
   }
   /* ===========================*/
   .back-button, .spacer-button {

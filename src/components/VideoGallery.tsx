@@ -8,6 +8,7 @@ function VideoGallery() {
                     return (
                         <div className="video-container" key={key}>
                             <iframe
+                                className="video-frame"
                                 src={url}
                                 title="Landscape Project"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
