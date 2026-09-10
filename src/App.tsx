@@ -21,13 +21,14 @@ export const ironworkFolderNames: {[key: string]: boolean} = {
   Ironworks: true,
 };
 
+  export const baseVideoURL = `https://res.cloudinary.com/dztqjtask/video/upload/`
+  export const aerialCompURL = 'Aerial_Showcases/Aerial_Comp.mp4';
+  export const baseImageURL = `https://res.cloudinary.com/dztqjtask/image/upload/`
+
 function App() {
   const [galleryData, setGalleryData] = useState<galleryDataType | undefined>();
   const [droneVideoData,   setDroneVideoData] = useState<mediaDataType | undefined>();
   const staticRawGalleryData: rawGalleryDataType = useMemo(() => getStaticRawGalleryData(), []); //Incase of server outage
-  const baseImageURL = `https://res.cloudinary.com/dztqjtask/image/upload/`
-  const baseVideoURL = `https://res.cloudinary.com/dztqjtask/video/upload/`
-  const aerialCompURL = 'Aerial_Showcases/Aerial_Comp.mp4';
 
   const location = useLocation();
   

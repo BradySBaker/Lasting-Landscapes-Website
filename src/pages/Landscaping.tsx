@@ -4,13 +4,17 @@ import { useLocation } from "react-router-dom";
 import ImageSlide from "../components/ImageSlide";
 import ImageGallery from '../components/ImageGallery';
 import VideoGallery from '../components/VideoGallery';
-import VideoSlide from '../components/VideoSlide';
 
-import { ironworkFolderNames, type galleryDataType } from '../App';
+import {baseImageURL, ironworkFolderNames, type galleryDataType } from '../App';
 
 import BackArrow from '../components/icons/BackArrowIcon';
 
 export type singleGalleryType = {folder: string, URLS: {icon: string, full: string}[]};
+
+let aerialImgUrls: string[] = [];
+for (let i = 1; i <= 7; i++) {
+    aerialImgUrls.push(`https://res.cloudinary.com/dztqjtask/image/upload/f_auto,q_auto/Aerial_Showcases/aerial_img_${i}.png`);
+}
 
 function Landscaping({galleryData}: {galleryData?: galleryDataType}) {
     const [selectedImgGallery, setSelectedImgGallery] = useState<singleGalleryType | false>(false);
@@ -50,7 +54,7 @@ function Landscaping({galleryData}: {galleryData?: galleryDataType}) {
                 <>
                 <div className="image-slide-container" onClick={() => setSelectedAerialShowcases(true)}>
                      <h2 className="image-slide-title">Aerial Showcases</h2>
-                     <VideoSlide />
+                     <ImageSlide imgURLS={aerialImgUrls}/>
                 </div>
                  {Object.entries(galleryData).map(([key, value]) => {
                         if (ironworkFolderNames[key]) {
